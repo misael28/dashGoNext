@@ -12,7 +12,7 @@ export function Sidebar() {
             <Link display="flex" align="strech">
               <Icon as={RiDashboardLine} fontSize="20" />
               <Text ml="4" fontWeight="medium">
-                Dashboard
+                Dashboard-
               </Text>
             </Link>
             <Link display="flex" align="strech">
