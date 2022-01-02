@@ -1,4 +1,4 @@
-import { Flex, Input, Icon } from "@chakra-ui/core";
+import { Flex, Input, Icon } from "@chakra-ui/react";
 import {
     RiSearchLine
   } from "react-icons/ri";

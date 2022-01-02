@@ -3,13 +3,14 @@ import {
     Button, Icon, 
     Table, Thead, 
     Tr, Th, Tbody, 
-    Td, Checkbox, Text  } from '@chakra-ui/react';
+    Td, Checkbox, Text, useBreakpointValue  } from '@chakra-ui/react';
 import { RiAddLine, RiEditLine } from 'react-icons/ri';
 import { Header } from '../../components/Header';
 import Pagination from '../../components/Pagination';
 import { Sidebar } from '../../components/Sidebar';
 
 export default function UserList(){
+    const isWideVersion = useBreakpointValue({ base: true, lg:false, });    
     return (
         <Box>
             <Header></Header>
@@ -36,17 +37,17 @@ export default function UserList(){
                         <Table colorScheme="whiteAlpha">
                             <Thead>
                                 <Tr>
-                                    <Th px="6" color="gray.300" width="8">
+                                    <Th px={["4","4","6"]} color="gray.300" width="8">
                                         <Checkbox colorScheme="pink" />
                                     </Th>
                                     <Th>Usuário</Th>
-                                    <Th>Data de cadastro</Th>
+                                    {isWideVersion && <Th>Data de cadastro</Th>}
                                     <Th>Editar</Th>
                                 </Tr>
                             </Thead>
                             <Tbody>
                                 <Tr>
-                                    <Td px="6">
+                                    <Td p={["6", "8"]}>
                                         <Checkbox colorScheme="pink" />
                                     </Td>
                                     <Td>
@@ -55,10 +56,7 @@ export default function UserList(){
                                             <Text fontWeight="sm" color="gray.300">email@gmail.com</Text>
                                         </Box>
                                     </Td>
-                                    <Td>
-                                        04 de julho, de 2020
-                                    </Td>
-                                    <Td>
+                                    {isWideVersion && <Td>01/01/2020</Td>}                                    <Td>
                                          <Button as="a" size="sm" fontSize="8" colorScheme="pink" leftIcon={<Icon as={RiEditLine}/>}  >
                                              Editar
                                         </Button>
@@ -68,7 +66,6 @@ export default function UserList(){
                             </Table>  
                             <Pagination />
                 </Box>
-
             </Flex>
         </Box>
     );
