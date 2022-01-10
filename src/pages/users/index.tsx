@@ -8,6 +8,7 @@ import { RiAddLine, RiEditLine } from 'react-icons/ri';
 import { Header } from '../../components/Header';
 import Pagination from '../../components/Pagination';
 import { Sidebar } from '../../components/Sidebar';
+import Link from 'next/link';
 
 export default function UserList(){
     const isWideVersion = useBreakpointValue({ base: true, lg:false, });    
@@ -30,9 +31,12 @@ export default function UserList(){
                             <Heading size="lg" fontWeight="normal" >
                                 Usuarios
                             </Heading>
-                            <Button as="a" size="sm" fontSize="sm" colorScheme="pink" leftIcon={<Icon as={RiAddLine}/>}  >
-                                Criar novo
-                            </Button>
+                            <Link href={"/users/create"} passHref>
+                                <Button as="a" size="sm" fontSize="sm" colorScheme="pink" leftIcon={<Icon as={RiAddLine}/>}  >
+                                    Criar novo
+                                </Button>
+                            </Link>
+                            
                         </Flex>
                         <Table colorScheme="whiteAlpha">
                             <Thead>
@@ -56,7 +60,8 @@ export default function UserList(){
                                             <Text fontWeight="sm" color="gray.300">email@gmail.com</Text>
                                         </Box>
                                     </Td>
-                                    {isWideVersion && <Td>01/01/2020</Td>}                                    <Td>
+                                    {isWideVersion && <Td>01/01/2020</Td>}                                    
+                                    <Td>
                                          <Button as="a" size="sm" fontSize="8" colorScheme="pink" leftIcon={<Icon as={RiEditLine}/>}  >
                                              Editar
                                         </Button>
