@@ -1,4 +1,5 @@
-import { createServer, Model } from "miragejs";
+import { createServer, Factory, Model } from "miragejs";
+import faker from "@withshepherd/faker";
 
 type User = {
     name: string;
@@ -9,13 +10,32 @@ type User = {
 export function makeServer(){
     const server = createServer({
         models: {
-            users: Model.extend<Partial<User>>({}),
+            user: Model.extend<Partial<User>>({}),
         },
-        
+        factories:{
+            user: Factory.extend({
+                name(i: number){
+                    return `User ${i}`;
+                },
+                email(){
+                    return faker.internet.email().toLocaleLowerCase();
+                },
+                created_at(){
+                    return faker.date.recent(10);
+                }
+            })
+        },
+        seeds(server) {
+            server.createList("user", 10);
+        },
         routes(){
-            this.namespace = "api";
+            this.namespace = "/api";
+            this.timing = 750;
+
             this.get("/users");
             this.post("/users");
+            this.namespace = '';
+            this.passthrough();
         }
     })
 
